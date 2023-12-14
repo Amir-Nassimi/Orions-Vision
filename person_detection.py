@@ -7,7 +7,7 @@ from torch.cuda import is_available as Cuda_Available
 
 @singleton
 class Detection:
-    def __init__(self, thresh = 45, model_path='yolov8x.pt'):
+    def __init__(self, thresh, model_path):
         self._model = self.Load_Model(model_path,device='0' if Cuda_Available() else 'cpu')
         self.Warm_Up()
         self.thresh = thresh
