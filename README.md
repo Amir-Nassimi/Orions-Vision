@@ -18,9 +18,13 @@ Unlock the potential of real-time tracking with Orion's Vision. Our innovative a
 Orion's Vision presents a pioneering approach to real-time processing for tracking applications. Our algorithm significantly enhances processing speeds on CPUs by using individuals' coordinates and image depth. It minimizes the reliance on neural networks by utilizing them periodically, not constantly, leading to a more efficient use of computational resources.
 
 ## Algorithm Overview
-Implemented a novel algorithm using individual’s coordinates and image depth, drastically improving real-time processing speed on CPUs with minimal reliance on neural networks by utilizing the network periodically, rather than constantly. This algorithm stands out for its ability to effectively integrate and compensate for any network's shortcomings, irrespective of its inherent accuracy. Remarkably, it is designed to work with any network that employs similarity metrics based on distance, regardless of the specific AI task it was trained for. It's versatile enough to efficiently track various objects or individuals with minimal neural network reliance, significantly boosting efficiency and adaptability in diverse monitoring scenarios.
+Orion's Vision integrates a cutting-edge algorithm that leverages individual coordinates and image depth to dramatically enhance real-time processing speed on CPUs, reducing the dependency on neural networks by utilizing them only periodically. This method stands out for its robust ability to compensate for any network's limitations, independent of its base accuracy.
 
-![Orion's Vision Algorithm Scheme](./assets/algorithm.jpg)
+It is designed with versatility in mind, able to efficiently track a wide array of objects or individuals across diverse monitoring scenarios with minimal reliance on neural networks. A standout feature of Orion's Vision is its proficiency in not only tracking known objects but also in accurately counting 'Unknown' entities, enhancing its utility in environments where not all objects may be identifiable or registered.
+
+Moreover, we believe in transparency and the advancement of knowledge. Therefore, while we ensure the core of our sophisticated algorithm remains proprietary, a portion of Orion's Vision's algorithm is available for public review, reflecting our commitment to contributing to the community while also safeguarding our innovative solutions.
+
+![Orion's Vision Algorithm Scheme](./assets/orions_vision_algorithm.jpg)
 
 ## Features
 - **Intelligent Frame Skipping**: Dynamically adjusts the frame rate, offering a balanced trade-off between speed and accuracy, thereby optimizing computational resources.
@@ -67,7 +71,7 @@ python run.py --skip_frame_rate 0 --threshold 45 --fps 30 --filepath "/path/to/y
 ## Demo
 Get a glimpse of Orion's Vision in action with our demo. This visual demonstration highlights the application's real-time gesture recognition capabilities. You can find it in ./assets directory.
 
-![Orion's Vision Demo](./assets/orions_vision.mp4)
+![Orion's Vision Demo](./assets/orions_vision_demo.mp4)
 
 ## Technology Stack
 Orion's Vision is built using:
