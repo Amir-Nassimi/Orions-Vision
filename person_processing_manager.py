@@ -17,51 +17,6 @@ class PersonProcessingManager:
 
         self.device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
-    def database_update(self, persons):
-        for data in self.database_manager.database:
-            if self.database_manager.time_passed(data['Last_Update']):
-                flag_ = False
-                for indx in persons:
-                    if persons[indx]['Label'] == data['Id']:
-                        flag_ = True
-                        break
-                    else:
-                        continue
-
-                if flag_:
-                    if len(data['Embds']) > (self.database_manager.data_keep + 1):
-                        data['Embds'].pop(0)
-
-                    new_embd = self.Person_ReIdentification(persons[indx]['Img'], flag_known=False, flag_unknown=False)
-                    data['Embds'].append(new_embd)
-                    data['Last_Update'] = time.gmtime()
-                else:
-                    continue
-            else:
-                continue
-
-        for data in self.database_manager.database_unknowns:
-            if self.database_manager.time_passed(data['Last_Update']):
-                flag_ = False
-                for indx in persons:
-                    if persons[indx]['Label'] == data['Id']:
-                        flag_ = True
-                        break
-                    else:
-                        continue
-
-                if flag_:
-                    if len(data['Embds']) > (self.database_manager.data_keep + 1):
-                        data['Embds'].pop(0)
-
-                    new_embd = self.Person_ReIdentification(persons[indx]['Img'], flag_known=False, flag_unknown=False)
-                    data['Embds'].append(new_embd)
-                    data['Last_Update'] = time.gmtime()
-                else:
-                    continue
-            else:
-                continue
-
     def Person_ReIdentification(self, img, flag_known=True, flag_unknown=False):
         img = cv2.cvtColor(img.copy(),cv2.COLOR_BGR2RGB)
         
@@ -264,3 +219,52 @@ class PersonProcessingManager:
         else: 
             prev_labels.append(current_label)
             return current_person,current_label,current_emb,state,current_dist,prev_labels,old_frame,new_persons,True
+        
+
+    def Databse_Update(self, persons):
+        def Time_Passed(current_time,second=2):
+            oldsecond = current_time[5]
+            currentsecond = time.gmtime()[5]
+
+            if ((currentsecond - oldsecond) >= second): return True
+            else: return False
+        
+        for data in self.database_manager.database:
+            if Time_Passed(data['Last_Update']):
+                flag_ = False
+                for indx in persons:
+                    if persons[indx]['Label'] == data['Id']: 
+                        flag_ = True
+                        break
+                    else: continue
+
+                if flag_:
+                    if len(data['Embds']) > (15+1): data['Embds'].pop(0)
+                    else: pass
+
+                    new_embd = self.Person_ReIdentification(persons[indx]['Img'],flag_known=False,flag_unknown=False)
+                    data['Embds'].append(new_embd)
+                    data['Last_Update'] = time.gmtime()
+                    
+                else: continue
+            else: continue
+
+        for data in self.database_manager.database_unknowns:
+            if Time_Passed(data['Last_Update']):
+                flag_ = False
+                for indx in persons:
+                    if persons[indx]['Label'] == data['Id']: 
+                        flag_ = True
+                        break
+                    else: continue
+
+                if flag_:
+                    if len(data['Embds']) > (15+1): data['Embds'].pop(0)
+                    else: pass
+                    
+                    new_embd = self.Person_ReIdentification(persons[indx]['Img'],flag_known=False,flag_unknown=False)
+                    data['Embds'].append(new_embd)
+                    data['Last_Update'] = time.gmtime()
+                    
+                else: continue
+            else: continue

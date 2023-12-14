@@ -41,9 +41,3 @@ class DatabaseManager:
         
             self.database_unknowns.append(data)
             return f'Unknown {indx}'
-
-    def time_passed(self, current_time, seconds=2):
-        old_second = current_time[5]
-        current_second = time.gmtime()[5]
-
-        return current_second - old_second >= seconds
