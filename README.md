@@ -46,6 +46,8 @@ pip install torch torchvision torchaudio --index-url https://download.pytorch.or
 pip install -r requirements.txt
 ```
 
+3. Create ./models directory. All the weights should be placed in this directory; yet only the names of them will be presented to the algorithm!
+
 ## Usage
 To use Orion's Vision for tracking, run the following command:
 ```bash
