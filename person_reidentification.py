@@ -7,7 +7,7 @@ from singleton_decorator import singleton
 
 @singleton
 class PersonReidentification:
-    def __init__(self, model_path='model.pth.tar-80'):
+    def __init__(self, model_path):
         self._reidentification_model = None
         self._model_path = f'./models/{model_path}'
         

@@ -4,7 +4,7 @@ from queue import Queue
 
 
 class Camera:
-    def __init__(self, source, desired_fps=30):
+    def __init__(self, source, desired_fps):
         self.source = source
         self._fps = desired_fps
         self._frames_queue = Queue()
